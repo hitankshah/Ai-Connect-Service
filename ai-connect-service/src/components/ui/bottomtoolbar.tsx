@@ -13,7 +13,7 @@ export default function TaskTray() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true); // Ensures the component is mounted before running client-side code
+    setIsMounted(true); // Ensures the component is ounted before running client-side code
     const updateClock = () => setTime(new Date());
     
     if (isMounted) {

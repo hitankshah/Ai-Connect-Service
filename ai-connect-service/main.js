@@ -7,14 +7,14 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true,
+      contextIsolation: true, // Use context isolation for better security
       enableRemoteModule: false,
+      nodeIntegration: false, // Keep this off to prevent vulnerabilities
+      webSecurity: false, // Disable for local development, use with caution
     },
   });
 
-  mainWindow.loadURL('http://localhost:3000'); 
-
-
+  mainWindow.loadURL('http://localhost:3000');
 }
 
 app.whenReady().then(createWindow);
