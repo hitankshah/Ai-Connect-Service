@@ -9,8 +9,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write .",
     "electron": "wait-on http://localhost:3000 && electron .",
-    "electron-build": "next build && electron-builder"
+    "electron-build": "next build && electron-builder",
+    "prod": "next build && next start",
+    "electron-prod": "wait-on http://localhost:3000 && electron ."
   },
   "main": "main.js",
   "dependencies": {
@@ -37,8 +40,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "electron": "^25.9.8",
+    "electron": "^32.1.2",
     "electron-builder": "^25.0.5",
+    "electron-packager": "^17.1.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "postcss": "^8",
@@ -47,9 +51,16 @@
     "wait-on": "^8.0.1"
   },
   "build": {
+    "appId": "com.example.ai-client-service",
     "win": {
       "target": "nsis",
       "sign": false
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
     }
   }
 }

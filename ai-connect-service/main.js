@@ -6,18 +6,20 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true, // Use context isolation for better security
-      enableRemoteModule: false,
-      nodeIntegration: false, // Keep this off to prevent vulnerabilities
-      webSecurity: false, // Disable for local development, use with caution
+      preload: path.join(__dirname, 'preload.js'), // optional
+      contextIsolation: true, // optional
+      enableRemoteModule: false // optional
     },
   });
 
-  mainWindow.loadURL('http://localhost:3000');
+  // Load the Next.js application
+  mainWindow.loadURL('http://localhost:3000'); // Use your production URL here if necessary
+
+  // Open the DevTools (optional)
+  mainWindow.webContents.openDevTools();
 }
 
-app.whenReady().then(createWindow);
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
