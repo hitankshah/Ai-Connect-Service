@@ -6,27 +6,29 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'), // optional
-      contextIsolation: true, // optional
-      enableRemoteModule: false // optional
+      preload: path.join(__dirname, 'preload.js'), // Optional: Add a preload script
+      contextIsolation: true, // Recommended for security
+      enableRemoteModule: false, // Disable the remote module
+      nodeIntegration: false, // Recommended for security
     },
   });
 
-  // Load the Next.js application
+  // Load the Next.js application (ensure your Next.js app is running)
   mainWindow.loadURL('http://localhost:3000'); // Use your production URL here if necessary
 
-  // Open the DevTools (optional)
-  mainWindow.webContents.openDevTools();
-}
 
-app.on('ready', createWindow);
 
+// Event when Electron is ready
+app.whenReady().then(createWindow);
+
+// Handle window closure
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
+// Recreate the window on macOS when the app is activated
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
