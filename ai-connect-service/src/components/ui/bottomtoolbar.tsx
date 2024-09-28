@@ -9,13 +9,14 @@ const icons = [
 ];
 
 export default function TaskTray() {
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState(new Date()); // Initialize with the current time
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true); // Ensures the component is ounted before running client-side code
+    setIsMounted(true); // Ensures the component is mounted before running client-side code
+
     const updateClock = () => setTime(new Date());
-    
+
     if (isMounted) {
       updateClock(); // Set the time immediately
       const timer = setInterval(updateClock, 60000); // Update time every minute

@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ExternalLink, Menu, X, ArrowLeft, Search } from 'lucide-react';
+import {  Menu, X, ArrowLeft, Search } from 'lucide-react';
 import BottomToolbar from '@/components/ui/bottomtoolbar';
 
 const initialServices = [
