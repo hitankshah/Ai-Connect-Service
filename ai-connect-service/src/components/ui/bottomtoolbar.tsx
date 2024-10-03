@@ -10,20 +10,20 @@ const icons = [
 
 export default function TaskTray() {
   const [time, setTime] = useState(new Date()); // Initialize with the current time
-  const [isMounted, setIsMounted] = useState(false);
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+  };
 
   useEffect(() => {
-    setIsMounted(true); // Ensures the component is mounted before running client-side code
-
     const updateClock = () => setTime(new Date());
 
-    if (isMounted) {
-      updateClock(); // Set the time immediately
-      const timer = setInterval(updateClock, 60000); // Update time every minute
+    // Set the time immediately on mount
+    updateClock();
 
-      return () => clearInterval(timer); // Cleanup interval on component unmount
-    }
-  }, [isMounted]);
+    const timer = setInterval(updateClock, 60000); // Update time every minute
+    return () => clearInterval(timer); // Cleanup interval on component unmount
+  }, []);
 
   return (
     <TooltipProvider>
@@ -42,7 +42,7 @@ export default function TaskTray() {
           </Tooltip>
         ))}
         <div className="text-xs font-medium ml-2">
-          {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'}
+          {time ? formatTime(time) : '--:--'}
         </div>
       </div>
     </TooltipProvider>

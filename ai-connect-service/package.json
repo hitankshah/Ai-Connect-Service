@@ -11,9 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "electron": "wait-on http://localhost:3000 && electron-forge start",
-    "make": "electron-forge make",
-    "package": "electron-forge package",
+    "electron": "wait-on http://localhost:3000 && electron .",
     "prod": "next build && next start"
   },
   "dependencies": {
@@ -37,17 +35,11 @@
     "use-debounce": "^10.0.3"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^7.5.0",
-    "@electron-forge/maker-deb": "^7.5.0",
-    "@electron-forge/maker-rpm": "^7.5.0",
-    "@electron-forge/maker-squirrel": "^7.5.0",
-    "@electron-forge/maker-zip": "^7.5.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "electron": "^32.1.2",
     "electron-builder": "^25.0.5",
-    "electron-packager": "^17.1.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "postcss": "^8",
@@ -55,38 +47,21 @@
     "typescript": "^5",
     "wait-on": "^8.0.1"
   },
-  "config": {
-    "forge": {
-      "packagerConfig": {
-        "icon": "path/to/icon",
-        "executableName": "AIClientService"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "ai-client-service"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "platforms": [
-            "linux"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "platforms": [
-            "linux"
-          ]
-        }
-      ]
+  "build": {
+    "appId": "com.shah.yourapp",
+    "files": [
+      "main.js",
+      "next/**/*",
+      "public/**/*"
+    ],
+    "linux": {
+      "target": ["AppImage", "deb"]
+    },
+    "win": {
+      "target": ["nsis"]
+    },
+    "mac": {
+      "target": ["dmg"]
     }
   }
 }

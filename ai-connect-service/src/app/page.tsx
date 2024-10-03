@@ -32,7 +32,7 @@ const initialServices = [
     name: 'Dev Community',
     icon: '👥',
     links: [
-      { name: 'GitHub', url: 'https://github.com/', preview: 'GitHub - Collaborative coding platform.' },
+      { name: 'GitHub', url: 'https://github.com', preview: 'GitHub - Collaborative coding platform.' },
       { name: 'Stack Overflow', url: 'https://stackoverflow.com/', preview: 'Stack Overflow - Programming Q&A site.' },
       { name: 'Dev.to', url: 'https://dev.to/', preview: 'Dev.to - Community for software developers.' },
       { name: 'Reddit - Programming', url: 'https://www.reddit.com/r/programming/', preview: 'Reddit - Programming discussions.' },

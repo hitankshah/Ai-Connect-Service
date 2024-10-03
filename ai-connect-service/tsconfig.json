@@ -7,7 +7,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node", // Changed to 'node' for better compatibility
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -17,12 +17,13 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./", // Optional: Set baseUrl for better path resolution
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"] // No need for "./" in paths
+      "@/*": ["src/*"]
     },
-    "strictNullChecks": true, // Optional: Enforce strict null checks
-    "forceConsistentCasingInFileNames": true // Optional: Ensures consistent casing
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
